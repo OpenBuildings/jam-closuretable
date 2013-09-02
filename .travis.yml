@@ -1,0 +1,18 @@
+--- 
+language: php
+
+php:
+  - 5.3
+
+script:
+  - phpunit --coverage-clover build/logs/clover.xml
+
+before_script:
+  - mkdir -p build/logs
+  - composer require satooshi/php-coveralls:0.6.*
+  - composer install --dev
+  - mysql -e 'create database `test-jam-closuretable`;'
+  - mysql test-jam-closuretable < tests/test_data/structure.sql
+
+after_script:
+  - php vendor/bin/coveralls -v
