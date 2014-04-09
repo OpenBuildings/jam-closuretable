@@ -1,18 +1,24 @@
---- 
+---
 language: php
 
 php:
   - 5.3
 
-script:
-  - phpunit --coverage-clover build/logs/clover.xml
+notifications:
+  email: false
+  slack:
+    secure: j0M/YHcUXUB3WIkGM2zVodP7FePghAJ4WsqsloTHfelGTbO3MNfA7bQy+rqixm3bSd4EoAa5AKt74eyDzORkpovXQX0gcP6HsskSNoRUthP1tNPj0c8/yvpWExOcQQO3l39vAJKpdKGOp/KXraU0j36m9lbte2e+Pyg0kUHKDaA=
 
 before_script:
   - mkdir -p build/logs
-  - composer require satooshi/php-coveralls:0.6.*
-  - composer install --dev
+  - composer selfupdate
+  - composer install --no-interaction
   - mysql -e 'create database `test-jam-closuretable`;'
   - mysql test-jam-closuretable < tests/test_data/structure.sql
 
+script:
+  - phpunit --coverage-clover build/logs/clover.xml
+
 after_script:
-  - php vendor/bin/coveralls -v
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
