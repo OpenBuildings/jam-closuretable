@@ -23,14 +23,14 @@ spl_autoload_register('test_autoload');
 Kohana::$config
 	->load('database')
 		->set(Kohana::TESTING, array(
-			'type'       => 'MySQL',
+			'type'       => 'PDO',
 			'connection' => array(
-				'hostname'   => 'localhost',
-				'database'   => 'test-jam-closuretable',
+                'dsn' => 'mysql:host=localhost;dbname=test-jam-closuretable',
 				'username'   => 'root',
 				'password'   => '',
 				'persistent' => TRUE,
 			),
+            'identifier' => '`',
 			'table_prefix' => '',
 			'charset'      => 'utf8',
 			'caching'      => FALSE,

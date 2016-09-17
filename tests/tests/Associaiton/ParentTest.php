@@ -58,7 +58,11 @@ class Jamclosuretable_Associaiton_ParentTest extends Testcase_Closuretable {
 	public function test_check()
 	{
 		$child = Jam::build('test_closurelist')->load_fields(array('id' => 1));
-		$parent = $this->getMock('Model_Test_Closurelist', array('check'), array('test_closurelist'));
+		$parent = $this->getMockBuilder('Model_Test_Closurelist')
+            ->setMethods(array('check'))
+            ->setConstructorArgs(array('test_closurelist'))
+            ->getMock();
+
 		$parent->load_fields(array('id' => 2));
 		$parent
 			->expects($this->once())
