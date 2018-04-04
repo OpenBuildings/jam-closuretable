@@ -68,7 +68,7 @@ class Kohana_Jam_Behavior_Closuretable extends Jam_Behavior {
 			->where($this->_branches_table.'.'.$this->_ansestor_key, '=', $parent);
 	}
 
-	public function model_call_depth(Jam_Model $model, Jam_event_data $data)
+	public function model_call_depth(Jam_Model $model, Jam_Event_Data $data)
 	{
 		$data->return = DB::select($this->_depth_key)
 			->from($this->_branches_table)
