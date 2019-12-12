@@ -13,13 +13,13 @@
 		}
 	],
 	"require": {
-		"php": ">=5.3.0",
+		"php": "^7.1",
         "kohana/core": "^3.3",
 		"composer/installers": "*"
 	},
 	"require-dev": {
 		"openbuildings/kohana-test-bootstrap": "^0.2",
 		"openbuildings/jam": "^0.5.13",
-		"phpunit/phpunit": "^4.0, <4.5"
+		"phpunit/phpunit": "^5.7.11"
 	}
 }
